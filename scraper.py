@@ -39,16 +39,16 @@ loc_element = driver.find_element(By.CSS_SELECTOR, 'select[name="state"]')
 location_select = Select(loc_element)
 location_options = [option.text for option in location_select.options]
 
-selected_state = input('Enter target state: ')
-state = selected_state.capitalize()
+selected_state = input('Enter state code: ')
+state = selected_state.upper()
 
 # error
-if selected_state not in location_options:
+if state not in location_options:
     print('Not a valid state')
     driver.quit()
     exit()
 
-location_select.select_by_visible_text(state)
+location_select.select_by_value(state)
 
 # Submit button
 search_button = driver.find_element(By.CSS_SELECTOR, 'button[type="submit"]')
